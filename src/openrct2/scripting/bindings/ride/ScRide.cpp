@@ -646,6 +646,19 @@ namespace OpenRCT2::Scripting
         return ride != nullptr ? ride->highestDropHeight : 0;
     }
 
+    DukValue ScRide::getOrigin() const
+    {
+        auto ctx = GetContext()->GetScriptEngine().GetContext();
+        auto ride = GetRide();
+        CoordsXYE origin;
+        if (ride != nullptr && RideTryGetOriginElement(*ride, &origin))
+        {
+            if (origin.element != nullptr)
+                return ToDuk(ctx, CoordsXYZ(origin.x, origin.y, origin.element->GetBaseZ()));
+        }
+        return ToDuk(ctx, CoordsXYZ(0, 0, 0));
+    }
+
     void ScRide::Register(duk_context* ctx)
     {
         dukglue_register_property(ctx, &ScRide::id_get, nullptr, "id");
@@ -693,6 +706,7 @@ namespace OpenRCT2::Scripting
         dukglue_register_property(ctx, &ScRide::numLiftHills_get, nullptr, "numLiftHills");
         dukglue_register_property(ctx, &ScRide::highestDropHeight_get, nullptr, "highestDropHeight");
         dukglue_register_property(ctx, &ScRide::getBreakdown, nullptr, "breakdown");
+        dukglue_register_property(ctx, &ScRide::getOrigin, nullptr, "origin");
         dukglue_register_method(ctx, &ScRide::SetBreakdown, "setBreakdown");
         dukglue_register_method(ctx, &ScRide::FixBreakdown, "fixBreakdown");
     }

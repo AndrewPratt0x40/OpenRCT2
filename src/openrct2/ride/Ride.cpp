@@ -5370,7 +5370,7 @@ void Ride::setToDefaultInspectionInterval()
  */
 void Ride::crash(uint8_t vehicleIndex)
 {
-    Vehicle* vehicle = GetEntity<Vehicle>(vehicles[vehicleIndex]);
+    /*Vehicle* vehicle = GetEntity<Vehicle>(vehicles[vehicleIndex]);
 
     if (gLegacyScene != LegacyScene::titleSequence && vehicle != nullptr)
     {
@@ -5384,7 +5384,7 @@ void Ride::crash(uint8_t vehicleIndex)
         {
             viewport->flags |= VIEWPORT_FLAG_SOUND_ON;
         }
-    }
+    }*/
 
     if (Config::Get().notifications.RideCrashed)
     {

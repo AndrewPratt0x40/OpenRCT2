@@ -13,6 +13,7 @@
 
     #include "../../../Context.h"
     #include "../../../ride/Ride.h"
+    #include "../../../world/Location.hpp"
     #include "../../Duktape.hpp"
     #include "../../ScriptEngine.h"
     #include "../object/ScObject.hpp"
@@ -197,6 +198,8 @@ namespace OpenRCT2::Scripting
         void FixBreakdown();
 
         std::string getBreakdown() const;
+
+        DukValue getOrigin() const;
 
     public:
         static void Register(duk_context* ctx);

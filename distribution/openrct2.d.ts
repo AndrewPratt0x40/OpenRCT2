@@ -648,6 +648,7 @@ declare global {
         "network.leave" |
         "park.guest.softcap.calculate" |
         "ride.breakdown" |
+        "ride.fix" |
         "ride.ratings.calculate" |
         "vehicle.crash";
 
@@ -2521,8 +2522,13 @@ declare global {
          * The current breakdown of the ride.
          */
         readonly breakdown: BreakdownType;
-         
+
         /**
+         * The position of the ride
+         */
+        readonly origin: CoordsXYZ;
+		 
+		/**
          * Set a breakdown on a ride.
          * @param breakdown The type of breakdown to set.
          */
